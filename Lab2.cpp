@@ -16,7 +16,7 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
 const int ARRAY_SIZE = 103;
 
-ShapeEditor* pse = NULL;    //фігура яку саме зараз малюєш
+ShapeEditor* pse[1];    //фігура яку саме зараз малюєш
 Shape* pcshape[ARRAY_SIZE]; //всі мої намальовані фігури
 ShapeObjectsEditor object;
 
@@ -138,13 +138,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         if (pse) pse->OnLBdown(hWnd);
         break;*/
     case WM_LBUTTONDOWN: //натиснуто ліву кнопку миші у клієнтській частині вікна
-        object.OnLBdown(hWnd);
+        object.OnLBdown(hWnd, pse);
         break;
     case WM_LBUTTONUP: //відпущено ліву кнопку миші у клієнтській частині вікна
-        object.OnLBup(hWnd, pcshape);
+        object.OnLBup(hWnd, pcshape, pse);
         break;
     case WM_MOUSEMOVE: //пересунуто мишу у клієнтській частині вікна
-        object.OnMouseMove(hWnd);
+        object.OnMouseMove(hWnd, pse);
         break;
     case WM_PAINT: //потрібно оновлення зображення клієнтської частині вікна
         object.OnPaint(hWnd, pcshape);
