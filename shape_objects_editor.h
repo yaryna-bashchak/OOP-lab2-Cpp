@@ -3,7 +3,9 @@
 #include "shape.h"
 #include "LineShape.cpp"
 #include "ShapeEditor.cpp"
+#include <string>
 
+using namespace std;
 
 class ShapeObjectsEditor
 {
@@ -11,13 +13,24 @@ private:
 	int COUNT_OF_OBJECTS = 0;
 	const int ARRAY_SIZE = 103;
 	long xstart, ystart, xend, yend;
+	string type;
 public:
-	void StartPointEditor() {};
-	void StartLineEditor(HWND hWnd, Shape* p[]) {
-		
+	void StartPointEditor(HWND hWnd) {
+		SetWindowText(hWnd, L"Режим вводу крапок");
+		type = "point";
 	};
-	void StartRectEditor() {};
-	void StartEllipseEditor() {};
+	void StartLineEditor(HWND hWnd) {
+		SetWindowText(hWnd, L"Режим вводу ліній");
+		type = "line";
+	};
+	void StartRectEditor(HWND hWnd) {
+		SetWindowText(hWnd, L"Режим вводу прямокутників");
+		type = "rect";
+	};
+	void StartEllipseEditor(HWND hWnd) {
+		SetWindowText(hWnd, L"Режим вводу еліпсів");
+		type = "ellipse";
+	};
 	void OnLBdown(HWND hWnd) {
 		POINT pt;
 
@@ -28,6 +41,7 @@ public:
 
 	};
 	void OnLBup(HWND hWnd, Shape* p[]) {
+		if (type != "") {
 		POINT pt;
 
 		GetCursorPos(&pt);
@@ -35,10 +49,23 @@ public:
 		xend = pt.x;
 		yend = pt.y;
 
-		p[COUNT_OF_OBJECTS] = new LineShape;
+		if (type == "point") {
+			//p[COUNT_OF_OBJECTS] = new PointShape;
+		}
+		else if (type == "line") {
+			p[COUNT_OF_OBJECTS] = new LineShape;
+		}
+		else if (type == "rect") {
+			//p[COUNT_OF_OBJECTS] = new RectShape;
+		}
+		else if (type == "ellipse") {
+			//p[COUNT_OF_OBJECTS] = new EllipseShape;
+		}
+
 		p[COUNT_OF_OBJECTS]->Set(xstart, ystart, xend, yend);
 		InvalidateRect(hWnd, NULL, TRUE);
 		COUNT_OF_OBJECTS++;
+		}
 	};
 	void OnMouseMove(HWND) {};
 	void OnPaint(HWND hWnd, Shape* p[]) {

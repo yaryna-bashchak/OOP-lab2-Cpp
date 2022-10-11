@@ -157,30 +157,26 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         switch (wmId)
         {
         case IDM_POINT:
-            SetWindowText(hWnd, L"Режим вводу крапок");
-            object.StartPointEditor(); //початок вводу точкових об’єктів
+            object.StartPointEditor(hWnd); //початок вводу точкових об’єктів
             break;
 
             /*if (pse) delete pse;
             pse = new PointEditor;*/
             break;
         case IDM_LINE:
-            SetWindowText(hWnd, L"Режим вводу ліній");
             /*HPEN hPen;
             hPen = CreatePen(PS_DASH, 1, RGB(0, 0, 0));
             SelectObject(hdc, hPen);
             MoveToEx(hdc, 400, 400, NULL);
             LineTo(hdc, 500, 700);*/
             //DeleteObject(hPen);
-            object.StartLineEditor(hWnd, pcshape); //початок вводу об’єктів-ліній
+            object.StartLineEditor(hWnd); //початок вводу об’єктів-ліній
             break;
         case IDM_RECT:
-            SetWindowText(hWnd, L"Режим вводу прямокутників");
-            object.StartRectEditor(); //початок вводу прямокутників
+            object.StartRectEditor(hWnd); //початок вводу прямокутників
             break;
         case IDM_ELLIPSE:
-            SetWindowText(hWnd, L"Режим вводу еліпсів");
-            object.StartEllipseEditor(); //початок вводу еліпсів
+            object.StartEllipseEditor(hWnd); //початок вводу еліпсів
             break;
         case IDM_ABOUT:
             DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
