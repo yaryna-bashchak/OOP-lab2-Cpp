@@ -28,5 +28,13 @@ public:
 	virtual void OnLBdown(HWND hWnd) = 0;
 	virtual void OnLBup(HWND, Shape* p[], int) = 0;
 	virtual void OnMouseMove(HWND) = 0;
-	virtual void OnPaint(HWND, Shape* pcshape[]) = 0;
+	void OnPaint(HWND hWnd, Shape* pcshape[], int COUNT_OF_OBJECTS)
+	{
+		PAINTSTRUCT ps;
+		HDC hdc;
+		hdc = BeginPaint(hWnd, &ps);
+		for (int i = 0; i < COUNT_OF_OBJECTS; i++)
+			pcshape[i]->Show(hdc);
+		EndPaint(hWnd, &ps);
+	}
 };

@@ -5,6 +5,7 @@
 #include "Lab2.h"
 #include "shape_objects_editor.h"
 #include "shape_editor.h"
+#include "editor.h"
 #include "shape.h"
 
 #define MAX_LOADSTRING 100
@@ -156,7 +157,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         object.OnMouseMove(hWnd, pse);
         break;
     case WM_PAINT: //потрібно оновлення зображення клієнтської частині вікна
-        object.OnPaint(hWnd, pcshape);
+        object.OnPaint(hWnd, pcshape, pse);
         break;
     case WM_COMMAND:
     {

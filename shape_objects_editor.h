@@ -21,5 +21,5 @@ public:
 	void OnLBdown(HWND hWnd, ShapeEditor* pse[]);
 	void OnLBup(HWND hWnd, Shape* p[], ShapeEditor* pse[]);
 	void OnMouseMove(HWND hWnd, ShapeEditor* pse[]);
-	void OnPaint(HWND hWnd, Shape* p[]);
+	void OnPaint(HWND hWnd, Shape* p[], ShapeEditor* pse[]);
 };

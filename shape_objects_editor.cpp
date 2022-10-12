@@ -54,13 +54,6 @@ void ShapeObjectsEditor::OnMouseMove(HWND hWnd, ShapeEditor* pse[]) {
 	if (pse[0])
 		pse[0]->OnMouseMove(hWnd);
 };
-void ShapeObjectsEditor::OnPaint(HWND hWnd, Shape* p[]) {
-	//pse->OnPaint(hwnd, p);
-	PAINTSTRUCT ps;
-	HDC hdc;
-	hdc = BeginPaint(hWnd, &ps);
-	for (int i = 0; i < *pCOUNT_OF_OBJECTS; i++)
-		p[i]->Show(hdc);
-	EndPaint(hWnd, &ps);
-
+void ShapeObjectsEditor::OnPaint(HWND hWnd, Shape* p[], ShapeEditor* pse[]) {
+	pse[0]->OnPaint(hWnd, p, *pCOUNT_OF_OBJECTS);
 };

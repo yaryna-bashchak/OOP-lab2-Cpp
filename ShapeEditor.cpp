@@ -1,7 +1,6 @@
-#include "editor.h"
 #include "framework.h"
 #include "shape_editor.h"
-#include "shape.h"
+
 #include "LineShape.cpp"
 #include "PointShape.cpp"
 #include "RectShape.cpp"
@@ -23,15 +22,6 @@ public:
 	}
 
 	void OnMouseMove(HWND hWnd) {};
-
-	void OnPaint(HWND hWnd, Shape* pcshape[])
-	{
-		PAINTSTRUCT ps;
-		HDC hdc;
-		hdc = BeginPaint(hWnd, &ps);
-
-		//InvalidateRect(hWnd, NULL, TRUE);
-	}
 };
 
 class LineEditor : public ShapeEditor
@@ -67,15 +57,6 @@ public:
 		DrawLine();
 		UpdateXY();
 		DrawLine();
-	}
-
-	void OnPaint(HWND hWnd, Shape* pcshape[])
-	{
-		PAINTSTRUCT ps;
-		HDC hdc;
-		hdc = BeginPaint(hWnd, &ps);
-
-		//InvalidateRect(hWnd, NULL, TRUE);
 	}
 };
 
@@ -114,15 +95,6 @@ public:
 		DrawRect();
 		UpdateXY();
 		DrawRect();
-	}
-
-	void OnPaint(HWND hWnd, Shape* pcshape[])
-	{
-		PAINTSTRUCT ps;
-		HDC hdc;
-		hdc = BeginPaint(hWnd, &ps);
-
-		//InvalidateRect(hWnd, NULL, TRUE);
 	}
 };
 
@@ -167,14 +139,5 @@ public:
 		UpdateXY();
 		DrawEllipse();
 		DrawRect();
-	}
-
-	void OnPaint(HWND hWnd, Shape* pcshape[])
-	{
-		PAINTSTRUCT ps;
-		HDC hdc;
-		hdc = BeginPaint(hWnd, &ps);
-
-		//InvalidateRect(hWnd, NULL, TRUE);
 	}
 };
