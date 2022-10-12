@@ -18,7 +18,6 @@ protected:
 		xend = pt.x;
 		yend = pt.y;
 	}
-	//корисні члени, які враховують специфіку Windows-програм
 public:
 	ShapeEditor(HWND hwnd) {
 		hWnd = hwnd;

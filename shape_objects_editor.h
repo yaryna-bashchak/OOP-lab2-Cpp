@@ -37,7 +37,7 @@ public:
 	void OnLBdown(HWND hWnd, ShapeEditor* pse[]) {
 		if (type != "") {
 			if (type == "point") {
-				//p[COUNT_OF_OBJECTS] = new PointShape;
+				pse[0] = new PointEditor(hWnd);
 			}
 			else if (type == "line") {
 				pse[0] = new LineEditor(hWnd);

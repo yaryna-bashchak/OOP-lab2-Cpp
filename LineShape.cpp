@@ -1,9 +1,3 @@
-//SelectObject(hdc, GetStockObject(WHITE_PEN))
-/*
-MoveToEx(hdc,x1,y1,NULL);
-LineTo(hdc,x2,y2);
-*/
-
 #include "shape.h"
 
 class LineShape : public Shape

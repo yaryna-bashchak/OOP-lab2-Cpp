@@ -5,7 +5,7 @@
 	pcshape[3] = p[3];
 }*/
 
-void Shape::Set(long x1, long y1, long x2, long y2)
+void Shape::Set(long x1 = 0, long y1 = 0, long x2 = 0, long y2 = 0)
 {
 	xs1 = x1;
 	ys1 = y1;
