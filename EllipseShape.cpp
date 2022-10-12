@@ -8,7 +8,11 @@ Ellipse(hdc,x1,y1,x2,y2); (еліпс із заповненням)
 class EllipseShape : public Shape
 {
 private:
-
+	HBRUSH hBrush = (HBRUSH)CreateSolidBrush(RGB(0, 255, 255));
 public:
-	//Show
+	void Show(HDC hdc)
+	{
+		SelectObject(hdc, hBrush);
+		Ellipse(hdc, xs1, ys1, xs2, ys2);
+	}
 };
