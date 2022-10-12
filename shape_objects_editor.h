@@ -1,5 +1,4 @@
 #pragma once
-#include "editor.h"
 #include "shape.h"
 #include "shape_editor.h"
 #include <string>

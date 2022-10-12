@@ -4,9 +4,6 @@
 #include "framework.h"
 #include "Lab2.h"
 #include "shape_objects_editor.h"
-#include "shape_editor.h"
-#include "editor.h"
-#include "shape.h"
 
 #define MAX_LOADSTRING 100
 
