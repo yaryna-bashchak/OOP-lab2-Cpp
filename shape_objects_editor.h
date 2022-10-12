@@ -40,7 +40,7 @@ public:
 				//p[COUNT_OF_OBJECTS] = new PointShape;
 			}
 			else if (type == "line") {
-				pse[0] = new LineEditor;
+				pse[0] = new LineEditor(hWnd);
 			}
 			else if (type == "rect") {
 				//p[COUNT_OF_OBJECTS] = new RectShape;

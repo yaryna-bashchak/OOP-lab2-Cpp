@@ -75,54 +75,37 @@ class PointEditor : public ShapeEditor
 
 class LineEditor : public ShapeEditor
 {
+private:
+	void DrawLine()
+	{
+		MoveToEx(hdc, xstart, ystart, NULL);
+		LineTo(hdc, xend, yend);
+	}
 public:
+	LineEditor(HWND hwnd)
+		:ShapeEditor(hwnd)
+	{}
 	void OnLBdown(HWND hWnd)
 	{
-		POINT pt;
-
-		GetCursorPos(&pt);
-		ScreenToClient(hWnd, &pt);
-		xstart = xend = pt.x;
-		ystart = yend = pt.y;
+		UpdateXY();
+		xstart = xend;
+		ystart = yend;
 	}
 
 	void OnLBup(HWND hWnd, Shape* p[], int COUNT_OF_OBJECTS)
 	{
-		POINT pt;
-
-		GetCursorPos(&pt);
-		ScreenToClient(hWnd, &pt);
-		xend = pt.x;
-		yend = pt.y;
+		UpdateXY();
 		p[COUNT_OF_OBJECTS] = new LineShape;
 		p[COUNT_OF_OBJECTS]->Set(xstart, ystart, xend, yend);
 	}
 
 	void OnMouseMove(HWND hWnd)
 	{
-		POINT pt;
-		HPEN hPenOld, hPen;
-		HDC hdc;
-
-		hdc = GetDC(hWnd); //отримуємо контекст вікна для малювання
 		SetROP2(hdc, R2_NOTXORPEN);
-		hPen = CreatePen(PS_DOT, 1, 0);
-		hPenOld = (HPEN)SelectObject(hdc, hPen);
 
-		MoveToEx(hdc, xstart, ystart, NULL);
-		LineTo(hdc, xend, yend);
-
-		GetCursorPos(&pt);
-		ScreenToClient(hWnd, &pt);
-		xend = pt.x; //координати поточної точки курсору
-		yend = pt.y;
-
-		MoveToEx(hdc, xstart, ystart, NULL);
-		LineTo(hdc, xend, yend);
-
-		SelectObject(hdc, hPenOld);
-		DeleteObject(hPen);
-		ReleaseDC(hWnd, hdc); //закриваємо контекст вікна
+		DrawLine();
+		UpdateXY();
+		DrawLine();
 	}
 
 	void OnPaint(HWND hWnd, Shape* pcshape[])
