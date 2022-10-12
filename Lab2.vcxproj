@@ -138,13 +138,10 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EllipseShape.cpp" />
     <ClCompile Include="Lab2.cpp" />
-    <ClCompile Include="LineShape.cpp" />
-    <ClCompile Include="PointShape.cpp" />
-    <ClCompile Include="RectShape.cpp" />
     <ClCompile Include="shape.cpp" />
     <ClCompile Include="ShapeEditor.cpp" />
+    <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="shape_objects_editor.cpp" />
   </ItemGroup>
   <ItemGroup>

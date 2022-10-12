@@ -9,6 +9,15 @@ ShapeEditor::ShapeEditor(HWND hwnd) {
 	hPenOld = (HPEN)SelectObject(hdc, hPen);
 };
 
+void ShapeEditor::UpdateXY()
+{
+	POINT pt;
+	GetCursorPos(&pt);
+	ScreenToClient(hWnd, &pt);
+	xend = pt.x;
+	yend = pt.y;
+}
+
 void ShapeEditor::OnLBdown(HWND hWnd)
 {
 	UpdateXY();

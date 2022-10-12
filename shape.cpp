@@ -1,9 +1,10 @@
 #include "shape.h"
 
-/*Shape::Shape(Shape* p[])
+Shape::~Shape()
 {
-	pcshape[3] = p[3];
-}*/
+	DeleteObject(hPen);
+	DeleteObject(hBrush);
+}
 
 void Shape::Set(long x1 = 0, long y1 = 0, long x2 = 0, long y2 = 0)
 {

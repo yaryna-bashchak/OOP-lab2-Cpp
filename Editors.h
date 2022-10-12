@@ -1,8 +1,6 @@
 #pragma once
-#include "LineShape.cpp"
-#include "PointShape.cpp"
-#include "RectShape.cpp"
-#include "EllipseShape.cpp"
+#include "Shapes.cpp"
+#include "shape_editor.h"
 
 /////////////////////////////////////////////////////
 
@@ -84,6 +82,7 @@ public:
 	void OnMouseMove(HWND hWnd)
 	{
 		SetROP2(hdc, R2_NOTXORPEN);
+
 		DrawRect();
 		UpdateXY();
 		DrawRect();
@@ -122,6 +121,7 @@ public:
 	void OnMouseMove(HWND hWnd)
 	{
 		SetROP2(hdc, R2_NOTXORPEN);
+
 		DrawEllipse();
 		DrawRect();
 		UpdateXY();

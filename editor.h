@@ -4,7 +4,7 @@
 
 class Editor
 {
-public: //а, можливо, ще потрібен віртуальний деструктор?
+public:
 	virtual void OnLBdown(HWND) = 0;
 	virtual void OnLBup(HWND, Shape* p[], int) = 0;
 	virtual void OnMouseMove(HWND) = 0;
