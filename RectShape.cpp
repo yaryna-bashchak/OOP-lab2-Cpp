@@ -8,9 +8,16 @@ Rectangle(hdc,x1,y1,x2,y2); (прямокутник із заповненням)
 class RectShape : public Shape
 {
 private:
-
+	HPEN hPen = CreatePen(PS_SOLID, 3, 0);
 public:
-	//Show
+	void Show(HDC hdc) {
+		SelectObject(hdc, hPen);
+		MoveToEx(hdc, xs2, ys2, NULL);
+		LineTo(hdc, xs2, 2 * ys1 - ys2);
+		LineTo(hdc, 2 * xs1 - xs2, 2 * ys1 - ys2);
+		LineTo(hdc, 2 * xs1 - xs2, ys2);
+		LineTo(hdc, xs2, ys2);
+	}
 };
 
 /*
