@@ -1,7 +1,7 @@
 #pragma once
 #include "editor.h"
 #include "shape.h"
-#include "ShapeEditor.cpp"
+#include "shape_editor.h"
 #include <string>
 
 using namespace std;

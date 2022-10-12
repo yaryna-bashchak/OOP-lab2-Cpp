@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="editor.h" />
+    <ClInclude Include="Editors.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Lab2.h" />
     <ClInclude Include="Resource.h" />

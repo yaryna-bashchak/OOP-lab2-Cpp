@@ -2,6 +2,7 @@
 #include "shape_objects_editor.h"
 #include "editor.h"
 #include "shape.h"
+#include "Editors.h"
 
 ShapeObjectsEditor::ShapeObjectsEditor(int size, int* p) {
 	ARRAY_SIZE = size;
