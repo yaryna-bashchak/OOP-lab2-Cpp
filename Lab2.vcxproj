@@ -133,6 +133,7 @@
     <ClInclude Include="Lab2.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="shape.h" />
+    <ClInclude Include="Shapes.h" />
     <ClInclude Include="shape_editor.h" />
     <ClInclude Include="shape_objects_editor.h" />
     <ClInclude Include="targetver.h" />
@@ -141,7 +142,6 @@
     <ClCompile Include="Lab2.cpp" />
     <ClCompile Include="shape.cpp" />
     <ClCompile Include="ShapeEditor.cpp" />
-    <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="shape_objects_editor.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +150,9 @@
   <ItemGroup>
     <Image Include="Lab2.ico" />
     <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

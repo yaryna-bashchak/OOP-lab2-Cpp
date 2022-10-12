@@ -1,5 +1,5 @@
 #pragma once
-#include "Shapes.cpp"
+#include "Shapes.h"
 #include "shape_editor.h"
 
 /////////////////////////////////////////////////////

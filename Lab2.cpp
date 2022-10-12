@@ -16,7 +16,7 @@ const int ARRAY_SIZE = 103;
 int COUNT_OF_OBJECTS = 0;
 int* pcount = &COUNT_OF_OBJECTS;
 
-ShapeEditor* pse[1];    //фігура яку саме зараз малюєш
+ShapeEditor* pse[1];
 Shape** pcshape;
 ShapeObjectsEditor object(ARRAY_SIZE, pcount);
 
@@ -141,19 +141,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    /*case WM_LBUTTONDOWN:
-        if (pse) pse->OnLBdown(hWnd);
-        break;*/
-    case WM_LBUTTONDOWN: //натиснуто ліву кнопку миші у клієнтській частині вікна
+    case WM_LBUTTONDOWN:
         object.OnLBdown(hWnd, pse);
         break;
-    case WM_LBUTTONUP: //відпущено ліву кнопку миші у клієнтській частині вікна
+    case WM_LBUTTONUP:
         object.OnLBup(hWnd, pcshape, pse);
         break;
-    case WM_MOUSEMOVE: //пересунуто мишу у клієнтській частині вікна
+    case WM_MOUSEMOVE:
         object.OnMouseMove(hWnd, pse);
         break;
-    case WM_PAINT: //потрібно оновлення зображення клієнтської частині вікна
+    case WM_PAINT:
         object.OnPaint(hWnd, pcshape, pse);
         break;
     case WM_COMMAND:
@@ -164,26 +161,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         switch (wmId)
         {
         case IDM_POINT:
-            object.StartPointEditor(hWnd); //початок вводу точкових об’єктів
-            break;
-
-            /*if (pse) delete pse;
-            pse = new PointEditor;*/
+            object.StartPointEditor(hWnd);
             break;
         case IDM_LINE:
-            /*HPEN hPen;
-            hPen = CreatePen(PS_DASH, 1, RGB(0, 0, 0));
-            SelectObject(hdc, hPen);
-            MoveToEx(hdc, 400, 400, NULL);
-            LineTo(hdc, 500, 700);*/
-            //DeleteObject(hPen);
-            object.StartLineEditor(hWnd); //початок вводу об’єктів-ліній
+            object.StartLineEditor(hWnd);
             break;
         case IDM_RECT:
-            object.StartRectEditor(hWnd); //початок вводу прямокутників
+            object.StartRectEditor(hWnd);
             break;
         case IDM_ELLIPSE:
-            object.StartEllipseEditor(hWnd); //початок вводу еліпсів
+            object.StartEllipseEditor(hWnd);
             break;
         case IDM_ABOUT:
             DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
@@ -195,18 +182,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             return DefWindowProc(hWnd, message, wParam, lParam);
         }
     }
-    break;
-    /*case WM_PAINT:
-    {
-        PAINTSTRUCT ps;
-        HDC hdc = BeginPaint(hWnd, &ps);
-        // TODO: Add any drawing code that uses hdc here...
-        EndPaint(hWnd, &ps);
-        //delete above
-        //if (pse) pse->OnPaint(hWnd, *pcshape);
         break;
-    }*/
-    break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
