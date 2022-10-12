@@ -15,10 +15,12 @@ WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
 const int ARRAY_SIZE = 103;
+int COUNT_OF_OBJECTS = 0;
+int* pcount = &COUNT_OF_OBJECTS;
 
 ShapeEditor* pse[1];    //фігура яку саме зараз малюєш
 Shape** pcshape;
-ShapeObjectsEditor object(ARRAY_SIZE);
+ShapeObjectsEditor object(ARRAY_SIZE, pcount);
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -62,6 +64,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
     }
 
+    for (size_t i = 0; i < COUNT_OF_OBJECTS; i++)
+    {
+        delete pcshape[i];
+    }
     delete[]pcshape;
 
     return (int) msg.wParam;

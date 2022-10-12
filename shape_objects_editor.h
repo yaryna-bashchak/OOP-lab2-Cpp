@@ -9,13 +9,14 @@ using namespace std;
 class ShapeObjectsEditor
 {
 private:
-	int COUNT_OF_OBJECTS = 0;
+	int* pCOUNT_OF_OBJECTS;
 	int ARRAY_SIZE;
 	//long xstart, ystart, xend, yend;
 	string type;
 public:
-	ShapeObjectsEditor(int size) {
+	ShapeObjectsEditor(int size, int* p) {
 		ARRAY_SIZE = size;
+		pCOUNT_OF_OBJECTS = p;
 	};
 	void StartPointEditor(HWND hWnd) {
 		SetWindowText(hWnd, L"Режим вводу крапок");
@@ -52,18 +53,23 @@ public:
 	};
 	void OnLBup(HWND hWnd, Shape* p[], ShapeEditor* pse[]) {
 		if (type != "") {
-			pse[0]->OnLBup(hWnd, p, COUNT_OF_OBJECTS);
+			pse[0]->OnLBup(hWnd, p, *pCOUNT_OF_OBJECTS);
+			delete pse[0];
+			pse[0] = NULL;
 			InvalidateRect(hWnd, NULL, TRUE);
-			COUNT_OF_OBJECTS++;
+			(*pCOUNT_OF_OBJECTS)++;
 		}
 	};
-	void OnMouseMove(HWND hWnd, ShapeEditor* pse[]) {};
+	void OnMouseMove(HWND hWnd, ShapeEditor* pse[]) {
+		if (pse[0])
+			pse[0]->OnMouseMove(hWnd);
+	};
 	void OnPaint(HWND hWnd, Shape* p[]) {
 		//pse->OnPaint(hwnd, p);
 		PAINTSTRUCT ps;
 		HDC hdc;
 		hdc = BeginPaint(hWnd, &ps);
-		for (int i = 0; i < COUNT_OF_OBJECTS; i++)
+		for (int i = 0; i < *pCOUNT_OF_OBJECTS; i++)
 			p[i]->Show(hdc);
 		EndPaint(hWnd, &ps);
 		

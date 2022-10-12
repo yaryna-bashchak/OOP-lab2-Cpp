@@ -82,8 +82,8 @@ public:
 
 		GetCursorPos(&pt);
 		ScreenToClient(hWnd, &pt);
-		xstart = pt.x;
-		ystart = pt.y;
+		xstart = xend = pt.x;
+		ystart = yend = pt.y;
 	}
 
 	void OnLBup(HWND hWnd, Shape* p[], int COUNT_OF_OBJECTS)
@@ -103,21 +103,22 @@ public:
 		POINT pt;
 		HPEN hPenOld, hPen;
 		HDC hdc;
+
 		hdc = GetDC(hWnd); //отримуємо контекст вікна для малювання
 		SetROP2(hdc, R2_NOTXORPEN);
 		hPen = CreatePen(PS_DOT, 1, 0);
 		hPenOld = (HPEN)SelectObject(hdc, hPen);
 
-		//Стирається відрізок(xstart, ystart, xend, yend);
-		//Малюються лінії "гумового" сліду попереднього розташування курсору
+		MoveToEx(hdc, xstart, ystart, NULL);
+		LineTo(hdc, xend, yend);
 
 		GetCursorPos(&pt);
 		ScreenToClient(hWnd, &pt);
 		xend = pt.x; //координати поточної точки курсору
 		yend = pt.y;
 
-		//Малюються лінії "гумового" сліду для поточного розташування курсору
-		//Малюється відрізок(xstart, ystart, xend, yend);
+		MoveToEx(hdc, xstart, ystart, NULL);
+		LineTo(hdc, xend, yend);
 
 		SelectObject(hdc, hPenOld);
 		DeleteObject(hPen);
