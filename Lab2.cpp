@@ -17,8 +17,8 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 const int ARRAY_SIZE = 103;
 
 ShapeEditor* pse[1];    //фігура яку саме зараз малюєш
-Shape* pcshape[ARRAY_SIZE]; //всі мої намальовані фігури
-ShapeObjectsEditor object;
+Shape** pcshape;
+ShapeObjectsEditor object(ARRAY_SIZE);
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -35,6 +35,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Place code here.
+    pcshape = new Shape * [ARRAY_SIZE];
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -60,6 +61,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             DispatchMessage(&msg);
         }
     }
+
+    delete[]pcshape;
 
     return (int) msg.wParam;
 }

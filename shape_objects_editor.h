@@ -10,10 +10,13 @@ class ShapeObjectsEditor
 {
 private:
 	int COUNT_OF_OBJECTS = 0;
-	const int ARRAY_SIZE = 103;
+	int ARRAY_SIZE;
 	//long xstart, ystart, xend, yend;
 	string type;
 public:
+	ShapeObjectsEditor(int size) {
+		ARRAY_SIZE = size;
+	};
 	void StartPointEditor(HWND hWnd) {
 		SetWindowText(hWnd, L"Режим вводу крапок");
 		type = "point";
@@ -60,9 +63,8 @@ public:
 		PAINTSTRUCT ps;
 		HDC hdc;
 		hdc = BeginPaint(hWnd, &ps);
-		for (int i = 0; i < ARRAY_SIZE; i++)
-			if (p[i])
-				p[i]->Show(hdc);
+		for (int i = 0; i < COUNT_OF_OBJECTS; i++)
+			p[i]->Show(hdc);
 		EndPaint(hWnd, &ps);
 		
 	};

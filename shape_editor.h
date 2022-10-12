@@ -6,7 +6,7 @@ class ShapeEditor : public Editor //- базовий клас, який забезпечуватиме полімор
 private:
 	
 protected:
-    long xstart, ystart, xend, yend;
+    long xstart = 0, ystart = 0, xend = 0, yend = 0;
 	//корисні члени, які враховують специфіку Windows-програм
 public:
 	//ShapeEditor(Shape*);

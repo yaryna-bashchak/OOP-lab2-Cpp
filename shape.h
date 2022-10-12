@@ -4,7 +4,7 @@
 class Shape
 {
 protected:
-	long xs1, ys1, xs2, ys2;
+	long xs1 = 0, ys1 = 0, xs2 = 0, ys2 = 0;
 	//Shape* pcshape[];
 public:
 	//Shape(Shape* p[]);
