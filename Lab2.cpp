@@ -16,7 +16,6 @@ const int ARRAY_SIZE = 103;
 int COUNT_OF_OBJECTS = 0;
 int* pcount = &COUNT_OF_OBJECTS;
 
-ShapeEditor* pse[1];
 Shape** pcshape;
 ShapeObjectsEditor object(ARRAY_SIZE, pcount);
 
@@ -142,16 +141,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
     case WM_LBUTTONDOWN:
-        object.OnLBdown(hWnd, pse);
+        object.OnLBdown(hWnd);
         break;
     case WM_LBUTTONUP:
-        object.OnLBup(hWnd, pcshape, pse);
+        object.OnLBup(hWnd, pcshape);
         break;
     case WM_MOUSEMOVE:
-        object.OnMouseMove(hWnd, pse);
+        object.OnMouseMove(hWnd);
         break;
     case WM_PAINT:
-        object.OnPaint(hWnd, pcshape, pse);
+        object.OnPaint(hWnd, pcshape);
         break;
     case WM_COMMAND:
     {

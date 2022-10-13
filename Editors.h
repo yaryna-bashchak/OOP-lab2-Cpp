@@ -17,6 +17,8 @@ public:
 		UpdateXY();
 		p[COUNT_OF_OBJECTS] = new PointShape;
 		p[COUNT_OF_OBJECTS]->Set(xstart, ystart, xend, yend);
+		xstart = ystart = xend = yend = 0;
+		InvalidateRect(hWnd, NULL, TRUE);
 	}
 
 	void OnMouseMove(HWND hWnd) {};
@@ -42,6 +44,8 @@ public:
 		UpdateXY();
 		p[COUNT_OF_OBJECTS] = new LineShape;
 		p[COUNT_OF_OBJECTS]->Set(xstart, ystart, xend, yend);
+		xstart = ystart = xend = yend = 0;
+		InvalidateRect(hWnd, NULL, TRUE);
 	}
 
 	void OnMouseMove(HWND hWnd)
@@ -77,6 +81,8 @@ public:
 		UpdateXY();
 		p[COUNT_OF_OBJECTS] = new RectShape;
 		p[COUNT_OF_OBJECTS]->Set(xstart, ystart, xend, yend);
+		xstart = ystart = xend = yend = 0;
+		InvalidateRect(hWnd, NULL, TRUE);
 	}
 
 	void OnMouseMove(HWND hWnd)
@@ -116,6 +122,8 @@ public:
 		UpdateXY();
 		p[COUNT_OF_OBJECTS] = new EllipseShape;
 		p[COUNT_OF_OBJECTS]->Set(xstart, ystart, xend, yend);
+		xstart = ystart = xend = yend = 0;
+		InvalidateRect(hWnd, NULL, TRUE);
 	}
 
 	void OnMouseMove(HWND hWnd)

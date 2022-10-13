@@ -4,6 +4,8 @@
 #include "shape.h"
 #include "Editors.h"
 
+ShapeEditor* pse = NULL;
+
 ShapeObjectsEditor::ShapeObjectsEditor(int size, int* p) {
 	ARRAY_SIZE = size;
 	pCOUNT_OF_OBJECTS = p;
@@ -11,50 +13,34 @@ ShapeObjectsEditor::ShapeObjectsEditor(int size, int* p) {
 
 void ShapeObjectsEditor::StartPointEditor(HWND hWnd) {
 	SetWindowText(hWnd, L"Режим вводу крапок");
-	type = "point";
+	pse = new PointEditor(hWnd);
 };
 void ShapeObjectsEditor::StartLineEditor(HWND hWnd) {
 	SetWindowText(hWnd, L"Режим вводу ліній");
-	type = "line";
+	pse = new LineEditor(hWnd);
 };
 void ShapeObjectsEditor::StartRectEditor(HWND hWnd) {
 	SetWindowText(hWnd, L"Режим вводу прямокутників");
-	type = "rect";
+	pse = new RectEditor(hWnd);
 };
 void ShapeObjectsEditor::StartEllipseEditor(HWND hWnd) {
 	SetWindowText(hWnd, L"Режим вводу еліпсів");
-	type = "ellipse";
+	pse = new EllipseEditor(hWnd);
 };
-void ShapeObjectsEditor::OnLBdown(HWND hWnd, ShapeEditor* pse[]) {
-	if (type != "") {
-		if (type == "point") {
-			pse[0] = new PointEditor(hWnd);
-		}
-		else if (type == "line") {
-			pse[0] = new LineEditor(hWnd);
-		}
-		else if (type == "rect") {
-			pse[0] = new RectEditor(hWnd);
-		}
-		else if (type == "ellipse") {
-			pse[0] = new EllipseEditor(hWnd);
-		}
-		pse[0]->OnLBdown(hWnd);
-	}
+void ShapeObjectsEditor::OnLBdown(HWND hWnd) {
+	if (pse)
+		pse->OnLBdown(hWnd);
 };
-void ShapeObjectsEditor::OnLBup(HWND hWnd, Shape* p[], ShapeEditor* pse[]) {
-	if (type != "") {
-		pse[0]->OnLBup(hWnd, p, *pCOUNT_OF_OBJECTS);
-		delete pse[0];
-		pse[0] = NULL;
-		InvalidateRect(hWnd, NULL, TRUE);
+void ShapeObjectsEditor::OnLBup(HWND hWnd, Shape* p[]) {
+	if (pse) {
+		pse->OnLBup(hWnd, p, *pCOUNT_OF_OBJECTS);
 		(*pCOUNT_OF_OBJECTS)++;
 	}
 };
-void ShapeObjectsEditor::OnMouseMove(HWND hWnd, ShapeEditor* pse[]) {
-	if (pse[0])
-		pse[0]->OnMouseMove(hWnd);
+void ShapeObjectsEditor::OnMouseMove(HWND hWnd) {
+	if (pse && pse -> Check())
+		pse->OnMouseMove(hWnd);
 };
-void ShapeObjectsEditor::OnPaint(HWND hWnd, Shape* p[], ShapeEditor* pse[]) {
-	pse[0]->OnPaint(hWnd, p, *pCOUNT_OF_OBJECTS);
+void ShapeObjectsEditor::OnPaint(HWND hWnd, Shape* p[]) {
+	pse->OnPaint(hWnd, p, *pCOUNT_OF_OBJECTS);
 };
